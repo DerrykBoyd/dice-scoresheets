@@ -1,0 +1,19 @@
+$break-small: 600px;
+
+.App {
+  text-align: center;
+}
+
+.App-body {
+  background-color: lightgrey;
+  min-height: calc(100vh - 64px);
+  margin-top: 64px;
+  @media screen and (max-width: $break-small) {
+    min-height: calc(100vh - 56px);
+    margin-top: 56px;
+  }
+}
+
+.buttons {
+  padding: 1em;
+}
