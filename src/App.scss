@@ -1,16 +1,45 @@
 $break-small: 600px;
+$primary: #5e35b1;
+$primary-light: #9162e4;
+$secondary: #4caf50;
+$secondary-light: #80e27e;
 
 .App {
   text-align: center;
 }
 
 .App-body {
-  background-color: lightgrey;
+  background-color: whitesmoke;
   min-height: calc(100vh - 64px);
   margin-top: 64px;
   @media screen and (max-width: $break-small) {
     min-height: calc(100vh - 56px);
     margin-top: 56px;
+  }
+}
+
+// NAV MENU
+
+#game-button {
+  color: white;
+}
+
+#home-img {
+  padding: 3em;
+}
+
+.die-img {
+  width: 64px;
+  margin: 0.5em 1em;
+  @media screen and (max-width: $break-small) {
+    width: 48px;
+    margin: 0.5em 1em;
+  }
+  &:nth-child(odd) {
+    transform: rotate(30deg)
+  }
+  &:nth-child(even) {
+    transform: rotate(-30deg)
   }
 }
 

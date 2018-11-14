@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.scss';
 import { MuiThemeProvider, createMuiTheme, withTheme } from '@material-ui/core/styles';
 import ContainedButtons from './Components/Buttons';
 import SimpleAppBar from './Components/TopBar';
 import SimpleTable from './Components/Table';
+import ChoosePlayers from './Components/ChoosePlayers';
 
 const theme = createMuiTheme({
   palette: {
@@ -25,19 +25,50 @@ const theme = createMuiTheme({
 
 
 class App extends Component {
+  state = {
+    numPlayers: '',
+    game: 'Choose Game',
+  }
+
+  updatePlayers = (num) => {
+    this.setState({numPlayers: num})
+  }
+
+  chooseGame = (gameChoice) => {
+    this.setState({ game: gameChoice });
+  }
+
   render() {
     return (
       <div className="App">
         <MuiThemeProvider theme={theme}>
-          <SimpleAppBar />
-          <header className="App-body">
-            <div className='home-table'>
+          <SimpleAppBar
+            game={this.state.game}
+            chooseGame={this.chooseGame}
+          />
+          <div className="App-body">
+            <div id="home-img">
+              <div id="dice-top-row" className="die-img-row">
+                <img className="die-img" src="svg/die-green.svg" alt="green-die"></img>
+                <img className="die-img" src="svg/die-purple.svg" alt="purple-die"></img>
+              </div>
+              <div id="dice-bottom-row" className="die-img-row">
+                <img className="die-img" src="svg/die-purple.svg" alt="purple-die"></img>
+                <img className="die-img" src="svg/die-green.svg" alt="green-die"></img>
+                <img className="die-img" src="svg/die-purple.svg" alt="purple-die"></img>
+              </div>
+            </div>
+            {/* <div className='home-table'>
               <SimpleTable />
-            </div>
+            </div> */}
             <div className='buttons'>
-              <ContainedButtons />
+            <ChoosePlayers
+              numPlayers={this.state.numPlayers}
+              updatePlayers={this.updatePlayers}
+              />
+              {/* <ContainedButtons /> */}
             </div>
-          </header>
+          </div>
         </MuiThemeProvider>
       </div>
     );
