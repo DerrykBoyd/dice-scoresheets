@@ -11,29 +11,56 @@ import Paper from '@material-ui/core/Paper';
 const styles = theme => ({
   root: {
     width: '100%',
-    marginTop: theme.spacing.unit * 3,
+    margin: 'auto',
     overflowX: 'auto',
   },
   table: {
-    minWidth: 600,
+    minWidth: 360,
+  },
+  td: {
+    padding: '5px',
+    minWidth: '70px',
+    textAlign: 'center',
+  },
+  th: {
+    padding: '0.5em',
+    position: 'sticky',
+    left: 0,
+    minWidth: '90px',
+    background: 'white',
+    borderRight: '1px solid rgba(224, 224, 224, 1)'
   },
 });
 
 let id = 0;
-function createData(name, calories, fat, carbs, protein) {
+function createData(row) {
   id += 1;
-  return { id, name, calories, fat, carbs, protein };
+  return { id, row };
 }
 
 const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
+  createData('Ones'),
+  createData('Twos'),
+  createData('Threes'),
+  createData('Fours'),
+  createData('Fives'),
+  createData('Sixes'),
+  createData('Sum'),
+  createData('Bonus'),
+  createData('Upper Total'),
+  createData('Three of a kind'),
+  createData('Four of a kind'),
+  createData('Full House'),
+  createData('Small Straight'),
+  createData('Large Straight'),
+  createData('Chance'),
+  createData('Yahtzee!'),
+  createData('Yahtzee Bonus'),
+  createData('TOTAL')
 ];
 
 function SimpleTable(props) {
+  const numPlayers = Array.from(Array(props.numPlayers).keys());
   const { classes } = props;
 
   return (
@@ -41,24 +68,22 @@ function SimpleTable(props) {
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell numeric>Calories</TableCell>
-            <TableCell numeric>Fat (g)</TableCell>
-            <TableCell numeric>Carbs (g)</TableCell>
-            <TableCell numeric>Protein (g)</TableCell>
+            <TableCell className={classes.th}>Player</TableCell>
+            {numPlayers.map((player, index) => {
+              return (<TableCell className={classes.td} key={index}>{`Player ${player + 1}`}</TableCell>)
+            })}
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map(row => {
             return (
-              <TableRow key={row.id}>
-                <TableCell component="th" scope="row">
-                  {row.name}
+              <TableRow key={row.id} className={classes.trs}>
+                <TableCell className={classes.th} component="th" scope="row">
+                  {row.row}
                 </TableCell>
-                <TableCell numeric>{row.calories}</TableCell>
-                <TableCell numeric>{row.fat}</TableCell>
-                <TableCell numeric>{row.carbs}</TableCell>
-                <TableCell numeric>{row.protein}</TableCell>
+                {numPlayers.map((player, index) => {
+                  return (<TableCell className={classes.td} key={index}>100</TableCell>)
+                })}
               </TableRow>
             );
           })}

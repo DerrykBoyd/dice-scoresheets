@@ -4,27 +4,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import Avatar from '@material-ui/core/Avatar';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
-import PersonIcon from '@material-ui/icons/Person';
-import AddIcon from '@material-ui/icons/Add';
-import Typography from '@material-ui/core/Typography';
 import blue from '@material-ui/core/colors/blue';
 import { Icon } from '@material-ui/core';
 
-const numbers = Array.from(Array(12).keys());
+const numbers = Array.from(Array(8).keys());
 const players = numbers.map( num => num+1);
-const styles = {
-  avatar: {
-    backgroundColor: blue[100],
-    color: blue[600],
-  },
-};
+const styles = {};
 
 class SimpleDialog extends React.Component {
   handleClose = () => {
@@ -92,7 +82,11 @@ class ChoosePlayers extends React.Component {
   render() {
     return (
       <div>
-        <Button variant="contained" color="primary" onClick={this.handleClickOpen}>
+        <Button 
+          variant="contained" 
+          color="primary" 
+          onClick={this.handleClickOpen}
+          classes={{}}>
             {this.state.btnText}
             <Icon>arrow_drop_down</Icon>
         </Button>

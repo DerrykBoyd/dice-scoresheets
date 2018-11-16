@@ -28,6 +28,7 @@ class SimpleMenu extends React.Component {
     return (
       <div>
         <Button
+          classes={{}}
           id="game-button"
           aria-owns={anchorEl ? 'simple-menu' : undefined}
           aria-haspopup="true"
