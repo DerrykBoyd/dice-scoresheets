@@ -150,13 +150,10 @@ class SimpleTable extends React.Component {
                       return (<TableCell className={classes.td} key={index}>
                         <Select 
                           variant='outlined'
-                          value={player.scores[row.row].toString()}
-                          placeholder={'test'}
-                          inputProps={{
-                            name: player.scores[row.id],
-                            id: player.scores[row.id],}}
-                          >
-                          <MenuItem value={'10'}>10</MenuItem>
+                          value={player.scores[row.row]}>
+                          <MenuItem value={0}>0</MenuItem>
+                          <MenuItem value={10}>10</MenuItem>
+                          <MenuItem value={20}>20</MenuItem>
                           </Select>
                         </TableCell>)
                     })}
