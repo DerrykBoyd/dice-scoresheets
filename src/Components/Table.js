@@ -41,7 +41,7 @@ const styles = theme => ({
     zIndex: 100,
   },
   input: {
-    padding: '5px 10px 5px 15px',
+    padding: '5px',
     textAlign: 'center'
   },
   smInput: {
