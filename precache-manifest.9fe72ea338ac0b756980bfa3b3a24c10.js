@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/dice-scoresheets/static/css/main.4d22eac6.chunk.css"
   },
   {
-    "revision": "65aaee12a0cd4a0d044baa4aeab74a01",
+    "revision": "7e54d0a9c28322b53e5bb2797bb7118f",
     "url": "/dice-scoresheets/index.html"
   }
 ];
