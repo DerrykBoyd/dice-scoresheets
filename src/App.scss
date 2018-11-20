@@ -50,3 +50,12 @@ $secondary-light: #80e27e;
 .buttons {
   padding: 1em;
 }
+
+.sub-totals, .table-totals {
+  font-size: 1.25em;
+  padding-right: 10px;
+}
+
+.table-totals {
+  font-weight: bold;
+}
