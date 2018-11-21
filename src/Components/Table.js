@@ -87,7 +87,7 @@ class Player {
     this.scores = {};
     this.setScores = function() {
       rows.forEach(e => {
-        this.scores[e.row] = 0;
+        this.scores[e.row] = '';
       });
     }
   }
@@ -109,18 +109,39 @@ class SimpleTable extends React.Component {
     this.setState({players: newPlayers});
   };
 
+  // add the lower total
+  addLower(upper, scores) {
+    let lowers = ['Three of a kind', 'Four of a kind', 'Full House', 
+                  'Small Straight', 'Large Straight', 'Yahtzee!', 'Yahtzee Bonus']
+    let total = upper;
+    lowers.forEach(item => {
+      if (scores[item] !== '') total += scores[item]
+    })
+    return total;
+  }
+
+  // add the upper total
+  addUpper(scores) {
+    let uppers = ['Ones', 'Twos', 'Threes', 'Fours', 'Fives', 'Sixes'];
+    let total = 0;
+    uppers.forEach(item => {
+      if (scores[item] !== '') total += scores[item];
+    })
+     return total;
+  }
+
   // Update the totals
   updateTotals = () => {
     let players = this.state.players;
     players.forEach(player => {
       let scores = player.scores;
-      scores.Sum = scores.Ones + scores.Twos + scores.Threes + scores.Fours + scores.Fives + scores.Sixes;
+      scores.Sum = this.addUpper(scores);
       if (scores.Sum >= 63) scores.Bonus = 35;
       else scores.Bonus = 0;
-      scores['Upper Total'] = scores.Sum + scores.Bonus;
-      scores.TOTAL = scores['Upper Total'] + parseInt(scores['Three of a kind']) + parseInt(scores['Four of a kind'])
-        + scores['Full House'] + scores['Small Straight'] + scores['Large Straight'] + parseInt(scores.Chance)
-        + scores['Yahtzee!'] + scores['Yahtzee Bonus']
+      scores['Upper Total'] = parseInt(scores.Sum) + parseInt(scores.Bonus);
+      if (!scores['Upper Total']) scores['Upper Total'] = 0;
+      scores.TOTAL = this.addLower(scores['Upper Total'], scores);
+      // if (!scores.TOTAL) scores.TOTAL = 0;
     })
   }
 
@@ -154,6 +175,15 @@ class SimpleTable extends React.Component {
     }
   }
 
+  // Return select items
+  returnMenuItems = (min, max) => {
+    let menuItems = [];
+    for (let i = min; i < max+1; i++) {
+      menuItems.push(<MenuItem key={i} value={i}>{i}</MenuItem>)
+    }
+    return menuItems;
+  }
+
   render() {
     const { classes } = this.props;
     return (
@@ -183,7 +213,7 @@ class SimpleTable extends React.Component {
                       inputProps={{
                         className: classes.smInput,
                       }}
-                      value={player.name} 
+                      placeholder={player.name} 
                       variant='filled'
                       margin='dense' />
                     </TableCell>)
@@ -210,6 +240,7 @@ class SimpleTable extends React.Component {
                                 select: classes.select,
                               }}
                               value={player.scores[row.row]}>
+                              <MenuItem value=''></MenuItem>
                               <MenuItem value={0}>0</MenuItem>
                               <MenuItem value={row.id}>{row.id}</MenuItem>
                               <MenuItem value={row.id*2}>{row.id*2}</MenuItem>
@@ -241,20 +272,18 @@ class SimpleTable extends React.Component {
                       } else if (row.id === 10 || row.id === 11 || row.id === 15) {
                         return (
                           <TableCell className={classes.td} key={index}>
-                            <Input
+                            <Select
                               name={`${index.toString()}-${row.row}`}
+                              onChange={this.updatePlayerScore}
                               classes={{
                                 root: classes.selectRoot,
-                                input: `${classes.input}`,
+                                select: classes.select,
                               }}
-                              value={player.scores[row.row]}
-                              onChange={this.updatePlayerScore}
-                              type="number"
-                              inputProps= {{
-                                min: 5,
-                                max: 30,
+                              value={player.scores[row.row]}>
+                              <MenuItem value=''></MenuItem>
+                              {this.returnMenuItems(5, 30)}
                               }}
-                            />
+                            </Select>
                           </TableCell>
                         )
                       // Add inputs for the full house
@@ -269,6 +298,7 @@ class SimpleTable extends React.Component {
                                 select: classes.select,
                               }}
                               value={player.scores[row.row]}>
+                              <MenuItem value=''></MenuItem>
                               <MenuItem value={0}>0</MenuItem>
                               <MenuItem value={25}>25</MenuItem>
                             </Select>
@@ -286,6 +316,7 @@ class SimpleTable extends React.Component {
                                 select: classes.select,
                               }}
                               value={player.scores[row.row]}>
+                              <MenuItem value=''></MenuItem>
                               <MenuItem value={0}>0</MenuItem>
                               <MenuItem value={30}>30</MenuItem>
                             </Select>
@@ -303,6 +334,7 @@ class SimpleTable extends React.Component {
                                 select: classes.select,
                               }}
                               value={player.scores[row.row]}>
+                              <MenuItem value=''></MenuItem>
                               <MenuItem value={0}>0</MenuItem>
                               <MenuItem value={40}>40</MenuItem>
                             </Select>
@@ -320,6 +352,7 @@ class SimpleTable extends React.Component {
                                 select: classes.select,
                               }}
                               value={player.scores[row.row]}>
+                              <MenuItem value=''></MenuItem>
                               <MenuItem value={0}>0</MenuItem>
                               <MenuItem value={50}>50</MenuItem>
                             </Select>
@@ -337,6 +370,7 @@ class SimpleTable extends React.Component {
                                 select: classes.select,
                               }}
                               value={player.scores[row.row]}>
+                              <MenuItem value=''></MenuItem>
                               <MenuItem value={0}>0</MenuItem>
                               <MenuItem value={100}>100</MenuItem>
                               <MenuItem value={200}>200</MenuItem>

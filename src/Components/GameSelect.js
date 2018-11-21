@@ -44,7 +44,7 @@ class SimpleMenu extends React.Component {
           onClose={this.handleClose}
         >
           <MenuItem id="yahtzee" onClick={this.handleCloseClick}>Yahtzee</MenuItem>
-          <MenuItem id="farkle (Coming Soon)" onClick={this.handleCloseClick}>Farkle (Coming Soon)</MenuItem>
+          <MenuItem id="farkle (Coming Soon)" disabled={true}>Farkle (Coming Soon)</MenuItem>
         </Menu>
       </div>
     );
