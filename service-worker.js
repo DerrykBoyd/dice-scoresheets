@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/dice-scoresheets/precache-manifest.3dfe45dfa3d19507e69f34500ae1c6e2.js"
+  "/dice-scoresheets/precache-manifest.ae77564ce3b940963f91a1586b434bf8.js"
 );
 
 workbox.clientsClaim();
