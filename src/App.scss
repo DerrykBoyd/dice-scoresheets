@@ -59,3 +59,10 @@ $secondary-light: #80e27e;
 .table-totals {
   font-weight: bold;
 }
+
+.credit {
+  color: $primary;
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+}

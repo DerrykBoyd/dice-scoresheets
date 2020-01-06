@@ -24,7 +24,7 @@ class SimpleAppBar extends React.Component {
         <AppBar position="fixed" color="primary">
           <Toolbar className={classes.toolBar}>
             <Typography variant="h6" color="inherit">
-              Dice Scoresheets
+              Dice Scoresheets - dboydgit
             </Typography>
             <SimpleMenu
               game={currentGame}

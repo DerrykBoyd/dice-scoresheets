@@ -34,7 +34,7 @@ class App extends Component {
   }
 
   updatePlayers = (num) => {
-    this.setState({numPlayers: num})
+    this.setState({ numPlayers: num })
   }
 
   chooseGame = (gameChoice) => {
@@ -43,15 +43,16 @@ class App extends Component {
 
   showTable = () => {
     let toggle = this.state.hideTable;
-    this.setState({ 
+    this.setState({
       showTable: !toggle,
-      hideMain: !toggle })
+      hideMain: !toggle
+    })
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.numPlayers !== prevState.numPlayers) {
       if (prevState.numPlayers === '') {
-        this.setState({showCreateScore : !this.state.showCreateScore})
+        this.setState({ showCreateScore: !this.state.showCreateScore })
       }
     }
   }
@@ -78,19 +79,22 @@ class App extends Component {
                 </div>
               </div>
               <div className='buttons'>
-              <ChoosePlayers
-                numPlayers={this.state.numPlayers}
-                updatePlayers={this.updatePlayers}/>
-              <div className = {this.state.showCreateScore ? "create-score" : 'hidden'}>
-                <CreateScore
-                  numPlayers = {this.state.numPlayers}
-                  showTable = {this.showTable} />
+                <ChoosePlayers
+                  numPlayers={this.state.numPlayers}
+                  updatePlayers={this.updatePlayers} />
+                <div className={this.state.showCreateScore ? "create-score" : 'hidden'}>
+                  <CreateScore
+                    numPlayers={this.state.numPlayers}
+                    showTable={this.showTable} />
+                </div>
               </div>
+              <div className='credit'>
+                <span>Developed by dboydgit</span>
               </div>
             </div>
             <div className={this.state.showTable ? 'home-table' : 'hidden'}>
-              <SimpleTable 
-                numPlayers = {this.state.numPlayers}/>
+              <SimpleTable
+                numPlayers={this.state.numPlayers} />
             </div>
           </div>
         </MuiThemeProvider>
