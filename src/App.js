@@ -7,6 +7,9 @@ import ChoosePlayers from './Components/ChoosePlayers';
 import SimpleTable from './Components/Table';
 
 const theme = createMuiTheme({
+  typography: {
+    useNextVariants: true,
+  },
   palette: {
     primary: {
       light: '#9162e4',
@@ -41,11 +44,19 @@ class App extends Component {
     this.setState({ game: gameChoice });
   }
 
-  showTable = () => {
-    let toggle = this.state.hideTable;
+  toggleTable = () => {
+    let table = this.state.showTable;
+    let main = this.state.hideMain;
     this.setState({
-      showTable: !toggle,
-      hideMain: !toggle
+      showTable: !table,
+      hideMain: !main
+    })
+  }
+
+  showMain = () => {
+    this.setState({
+      hideMain: false,
+      showTable: false
     })
   }
 
@@ -64,6 +75,7 @@ class App extends Component {
           <SimpleAppBar
             game={this.state.game}
             chooseGame={this.chooseGame}
+            showMain={this.showMain}
           />
           <div className="App-body">
             <div className={this.state.hideMain ? 'hidden' : 'home-main'}>
@@ -85,7 +97,7 @@ class App extends Component {
                 <div className={this.state.showCreateScore ? "create-score" : 'hidden'}>
                   <CreateScore
                     numPlayers={this.state.numPlayers}
-                    showTable={this.showTable} />
+                    toggleTable={this.toggleTable} />
                 </div>
               </div>
               <div className='credit'>

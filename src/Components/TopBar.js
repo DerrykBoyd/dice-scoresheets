@@ -23,7 +23,10 @@ class SimpleAppBar extends React.Component {
       <div className={classes.root}>
         <AppBar position="fixed" color="primary">
           <Toolbar className={classes.toolBar}>
-            <Typography variant="h6" color="inherit">
+            <Typography id='header-text' 
+                variant="h6" 
+                color="inherit" 
+                onClick={this.props.showMain}>
               Dice Scoresheets
             </Typography>
             <SimpleMenu

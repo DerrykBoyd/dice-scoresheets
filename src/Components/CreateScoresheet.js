@@ -13,7 +13,7 @@ function CreateScore(props) {
   const { classes } = props;
 
   const handleClick = () => {
-    props.showTable();
+    props.toggleTable();
   }
 
   return (

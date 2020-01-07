@@ -85,7 +85,7 @@ class Player {
   constructor(name) {
     this.name = name;
     this.scores = {};
-    this.setScores = function() {
+    this.setScores = function () {
       rows.forEach(e => {
         this.scores[e.row] = '';
       });
@@ -101,18 +101,18 @@ class SimpleTable extends React.Component {
   // create new players from the numPlayers prop
   addPlayers = () => {
     const newPlayers = [];
-    for (let i = 0; i<this.props.numPlayers; i++) {
-      let newPlayer = new Player(`Player ${i+1}`);
+    for (let i = 0; i < this.props.numPlayers; i++) {
+      let newPlayer = new Player(`Player ${i + 1}`);
       newPlayer.setScores();
       newPlayers.push(newPlayer)
     }
-    this.setState({players: newPlayers});
+    this.setState({ players: newPlayers });
   };
 
   // add the lower total
   addLower(upper, scores) {
-    let lowers = ['Three of a kind', 'Four of a kind', 'Full House', 
-                  'Small Straight', 'Large Straight', 'Yahtzee!', 'Yahtzee Bonus']
+    let lowers = ['Three of a kind', 'Four of a kind', 'Full House',
+      'Small Straight', 'Large Straight', 'Yahtzee!', 'Yahtzee Bonus']
     let total = upper;
     lowers.forEach(item => {
       if (scores[item] !== '') total += scores[item]
@@ -127,7 +127,7 @@ class SimpleTable extends React.Component {
     uppers.forEach(item => {
       if (scores[item] !== '') total += scores[item];
     })
-     return total;
+    return total;
   }
 
   // Update the totals
@@ -176,10 +176,13 @@ class SimpleTable extends React.Component {
   }
 
   // Return select items
-  returnMenuItems = (min, max) => {
+  returnMenuItems = (min, max, zero) => {
     let menuItems = [];
-    for (let i = min; i < max+1; i++) {
+    for (let i = min; i < max + 1; i++) {
       menuItems.push(<MenuItem key={i} value={i}>{i}</MenuItem>)
+    }
+    if (zero !== undefined) {
+      menuItems.unshift(<MenuItem key={max+1} value={0}>0</MenuItem>);
     }
     return menuItems;
   }
@@ -190,13 +193,13 @@ class SimpleTable extends React.Component {
       <div>
         <div id='yahtzee-table'>
           <div id='yt-header'>
-  
+
           </div>
           <div id='yt-left'>
-  
+
           </div>
           <div id='yt-main'>
-  
+
           </div>
         </div>
         <Paper className={classes.root}>
@@ -213,10 +216,10 @@ class SimpleTable extends React.Component {
                       inputProps={{
                         className: classes.smInput,
                       }}
-                      placeholder={player.name} 
+                      placeholder={player.name}
                       variant='filled'
                       margin='dense' />
-                    </TableCell>)
+                  </TableCell>)
                 })}
               </TableRow>
             </TableHead>
@@ -232,7 +235,7 @@ class SimpleTable extends React.Component {
                       if (row.id < 7) {
                         return (
                           <TableCell className={classes.td} key={index}>
-                            <Select 
+                            <Select
                               name={`${index.toString()}-${row.row}`}
                               onChange={this.updatePlayerScore}
                               classes={{
@@ -243,14 +246,14 @@ class SimpleTable extends React.Component {
                               <MenuItem value=''></MenuItem>
                               <MenuItem value={0}>0</MenuItem>
                               <MenuItem value={row.id}>{row.id}</MenuItem>
-                              <MenuItem value={row.id*2}>{row.id*2}</MenuItem>
-                              <MenuItem value={row.id*3}>{row.id*3}</MenuItem>
-                              <MenuItem value={row.id*4}>{row.id*4}</MenuItem>
-                              <MenuItem value={row.id*5}>{row.id*5}</MenuItem>
+                              <MenuItem value={row.id * 2}>{row.id * 2}</MenuItem>
+                              <MenuItem value={row.id * 3}>{row.id * 3}</MenuItem>
+                              <MenuItem value={row.id * 4}>{row.id * 4}</MenuItem>
+                              <MenuItem value={row.id * 5}>{row.id * 5}</MenuItem>
                             </Select>
                           </TableCell>
                         )
-                      // Add divs for the sub totals
+                        // Add divs for the sub totals
                       } else if (row.id < 9) {
                         return (
                           <TableCell className={classes.td} key={index}>
@@ -259,7 +262,7 @@ class SimpleTable extends React.Component {
                             </div>
                           </TableCell>
                         )
-                      // Add divs for the totals
+                        // Add divs for the totals
                       } else if (row.id === 9 || row.id === 18) {
                         return (
                           <TableCell className={classes.td} key={index}>
@@ -268,7 +271,7 @@ class SimpleTable extends React.Component {
                             </div>
                           </TableCell>
                         )
-                      // Add Inputs for the 3OFK 4OFK Chance
+                        // Add Inputs for the 3OFK 4OFK Chance
                       } else if (row.id === 10 || row.id === 11 || row.id === 15) {
                         return (
                           <TableCell className={classes.td} key={index}>
@@ -281,16 +284,16 @@ class SimpleTable extends React.Component {
                               }}
                               value={player.scores[row.row]}>
                               <MenuItem value=''></MenuItem>
-                              {this.returnMenuItems(5, 30)}
+                              {this.returnMenuItems(5, 30, 0)}
                               }}
                             </Select>
                           </TableCell>
                         )
-                      // Add inputs for the full house
+                        // Add inputs for the full house
                       } else if (row.id === 12) {
                         return (
                           <TableCell className={classes.td} key={index}>
-                            <Select 
+                            <Select
                               name={`${index.toString()}-${row.row}`}
                               onChange={this.updatePlayerScore}
                               classes={{
@@ -304,11 +307,11 @@ class SimpleTable extends React.Component {
                             </Select>
                           </TableCell>
                         )
-                      // Add inputs for the small straight
+                        // Add inputs for the small straight
                       } else if (row.id === 13) {
                         return (
                           <TableCell className={classes.td} key={index}>
-                            <Select 
+                            <Select
                               name={`${index.toString()}-${row.row}`}
                               onChange={this.updatePlayerScore}
                               classes={{
@@ -322,11 +325,11 @@ class SimpleTable extends React.Component {
                             </Select>
                           </TableCell>
                         )
-                      // Add inputs for the large straight
+                        // Add inputs for the large straight
                       } else if (row.id === 14) {
                         return (
                           <TableCell className={classes.td} key={index}>
-                            <Select 
+                            <Select
                               name={`${index.toString()}-${row.row}`}
                               onChange={this.updatePlayerScore}
                               classes={{
@@ -340,11 +343,11 @@ class SimpleTable extends React.Component {
                             </Select>
                           </TableCell>
                         )
-                      // Add inputs for Yahtzee
+                        // Add inputs for Yahtzee
                       } else if (row.id === 16) {
                         return (
                           <TableCell className={classes.td} key={index}>
-                            <Select 
+                            <Select
                               name={`${index.toString()}-${row.row}`}
                               onChange={this.updatePlayerScore}
                               classes={{
@@ -358,11 +361,11 @@ class SimpleTable extends React.Component {
                             </Select>
                           </TableCell>
                         )
-                      // Add inputs for the Yahtzee Bonus
+                        // Add inputs for the Yahtzee Bonus
                       } else if (row.id === 17) {
                         return (
                           <TableCell className={classes.td} key={index}>
-                            <Select 
+                            <Select
                               name={`${index.toString()}-${row.row}`}
                               onChange={this.updatePlayerScore}
                               classes={{
@@ -391,7 +394,7 @@ class SimpleTable extends React.Component {
       </div>
     );
   }
-  
+
 }
 
 SimpleTable.propTypes = {
