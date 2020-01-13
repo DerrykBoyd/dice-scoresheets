@@ -9,7 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select'
-import { MenuItem, Input } from '@material-ui/core';
+import { MenuItem } from '@material-ui/core';
 
 const styles = theme => ({
   root: {

@@ -9,7 +9,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
-import blue from '@material-ui/core/colors/blue';
 import { Icon } from '@material-ui/core';
 
 const numbers = Array.from(Array(8).keys());

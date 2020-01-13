@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import './App.scss';
-import { MuiThemeProvider, createMuiTheme, withTheme } from '@material-ui/core/styles';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CreateScore from './Components/CreateScoresheet';
 import SimpleAppBar from './Components/TopBar';
 import ChoosePlayers from './Components/ChoosePlayers';
 import SimpleTable from './Components/Table';
+import Credits from './Components/Credits';
 
 const theme = createMuiTheme({
   typography: {
@@ -100,9 +101,7 @@ class App extends Component {
                     toggleTable={this.toggleTable} />
                 </div>
               </div>
-              <div className='credit'>
-                <span>Developed by dboydgit</span>
-              </div>
+              <Credits />
             </div>
             <div className={this.state.showTable ? 'home-table' : 'hidden'}>
               <SimpleTable

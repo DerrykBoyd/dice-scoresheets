@@ -18,6 +18,12 @@ $secondary-light: #80e27e;
   }
 }
 
+.home-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .hidden {
   display: none;
 }
@@ -62,11 +68,4 @@ $secondary-light: #80e27e;
 
 .table-totals {
   font-weight: bold;
-}
-
-.credit {
-  color: $primary;
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
 }
