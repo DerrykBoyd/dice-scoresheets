@@ -1,22 +1,24 @@
 {
   "files": {
-    "main.css": "/dice-scoresheets/static/css/main.993483e4.chunk.css",
-    "main.js": "/dice-scoresheets/static/js/main.9fba7d32.chunk.js",
-    "main.js.map": "/dice-scoresheets/static/js/main.9fba7d32.chunk.js.map",
-    "runtime-main.js": "/dice-scoresheets/static/js/runtime-main.48d3db74.js",
-    "runtime-main.js.map": "/dice-scoresheets/static/js/runtime-main.48d3db74.js.map",
-    "static/js/2.be388844.chunk.js": "/dice-scoresheets/static/js/2.be388844.chunk.js",
-    "static/js/2.be388844.chunk.js.map": "/dice-scoresheets/static/js/2.be388844.chunk.js.map",
+    "main.css": "/dice-scoresheets/static/css/main.7dce9bab.chunk.css",
+    "main.js": "/dice-scoresheets/static/js/main.acd43287.chunk.js",
+    "main.js.map": "/dice-scoresheets/static/js/main.acd43287.chunk.js.map",
+    "runtime-main.js": "/dice-scoresheets/static/js/runtime-main.e6fb3b3e.js",
+    "runtime-main.js.map": "/dice-scoresheets/static/js/runtime-main.e6fb3b3e.js.map",
+    "static/js/2.55eedf91.chunk.js": "/dice-scoresheets/static/js/2.55eedf91.chunk.js",
+    "static/js/2.55eedf91.chunk.js.map": "/dice-scoresheets/static/js/2.55eedf91.chunk.js.map",
     "index.html": "/dice-scoresheets/index.html",
-    "precache-manifest.467c3a9f013ab448765b7b4669cc518d.js": "/dice-scoresheets/precache-manifest.467c3a9f013ab448765b7b4669cc518d.js",
+    "precache-manifest.492084c8ce86ce0bb7e5616c7046e5c7.js": "/dice-scoresheets/precache-manifest.492084c8ce86ce0bb7e5616c7046e5c7.js",
     "service-worker.js": "/dice-scoresheets/service-worker.js",
-    "static/css/main.993483e4.chunk.css.map": "/dice-scoresheets/static/css/main.993483e4.chunk.css.map",
-    "static/js/2.be388844.chunk.js.LICENSE": "/dice-scoresheets/static/js/2.be388844.chunk.js.LICENSE"
+    "static/css/main.7dce9bab.chunk.css.map": "/dice-scoresheets/static/css/main.7dce9bab.chunk.css.map",
+    "static/js/2.55eedf91.chunk.js.LICENSE.txt": "/dice-scoresheets/static/js/2.55eedf91.chunk.js.LICENSE.txt",
+    "static/media/die-green.svg": "/dice-scoresheets/static/media/die-green.18f3df52.svg",
+    "static/media/die-purple.svg": "/dice-scoresheets/static/media/die-purple.04fbd31c.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.48d3db74.js",
-    "static/js/2.be388844.chunk.js",
-    "static/css/main.993483e4.chunk.css",
-    "static/js/main.9fba7d32.chunk.js"
+    "static/js/runtime-main.e6fb3b3e.js",
+    "static/js/2.55eedf91.chunk.js",
+    "static/css/main.7dce9bab.chunk.css",
+    "static/js/main.acd43287.chunk.js"
   ]
 }
