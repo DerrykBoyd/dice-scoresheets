@@ -1,6 +1,5 @@
 import React from 'react'
 import githubLogo from '../assets/GitHub-Mark-32px.png';
-import './Credits.css';
 
 const Credits = (props) => {
     return ( 

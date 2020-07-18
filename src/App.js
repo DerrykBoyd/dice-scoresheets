@@ -7,6 +7,9 @@ import ChoosePlayers from './Components/ChoosePlayers';
 import SimpleTable from './Components/Table';
 import Credits from './Components/Credits';
 
+const purpleDie = require('./assets/svg/die-purple.svg');
+const greenDie = require('./assets/svg/die-green.svg');
+
 const theme = createMuiTheme({
   typography: {
     useNextVariants: true,
@@ -82,13 +85,13 @@ class App extends Component {
             <div className={this.state.hideMain ? 'hidden' : 'home-main'}>
               <div id="home-img">
                 <div id="dice-top-row" className="die-img-row">
-                  <img className="die-img" src="svg/die-green.svg" alt="green-die"></img>
-                  <img className="die-img" src="svg/die-purple.svg" alt="purple-die"></img>
+                  <img className="die-img" src={greenDie} alt="green-die"></img>
+                  <img className="die-img" src={purpleDie} alt="purple-die"></img>
                 </div>
                 <div id="dice-bottom-row" className="die-img-row">
-                  <img className="die-img" src="svg/die-purple.svg" alt="purple-die"></img>
-                  <img className="die-img" src="svg/die-green.svg" alt="green-die"></img>
-                  <img className="die-img" src="svg/die-purple.svg" alt="purple-die"></img>
+                  <img className="die-img" src={purpleDie} alt="purple-die"></img>
+                  <img className="die-img" src={greenDie} alt="green-die"></img>
+                  <img className="die-img" src={purpleDie} alt="purple-die"></img>
                 </div>
               </div>
               <div className='buttons'>

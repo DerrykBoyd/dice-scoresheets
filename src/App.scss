@@ -10,18 +10,20 @@ $secondary-light: #80e27e;
 
 .App-body {
   background-color: whitesmoke;
-  min-height: calc(100vh - 64px);
+  height: calc(100vh - 64px);
   margin-top: 64px;
   @media screen and (max-width: $break-small) {
-    min-height: calc(100vh - 56px);
+    height: calc(100vh - 56px);
     margin-top: 56px;
   }
 }
 
 .home-main {
-  display: flex;
-  flex-direction: column;
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: 240px 1fr 1fr;
   align-items: center;
+  align-content: center;
 }
 
 .hidden {
@@ -35,7 +37,7 @@ $secondary-light: #80e27e;
 }
 
 #home-img {
-  padding: 3em;
+  margin: 2rem;
 }
 
 #header-text {
@@ -58,7 +60,8 @@ $secondary-light: #80e27e;
 }
 
 .buttons {
-  padding: 1em;
+  margin: 1rem;
+  align-self: start;
 }
 
 .sub-totals, .table-totals {
@@ -68,4 +71,16 @@ $secondary-light: #80e27e;
 
 .table-totals {
   font-weight: bold;
+}
+
+#credits {
+  align-self: end;
+  margin: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#github-link {
+  margin: 0 0.5rem;
 }

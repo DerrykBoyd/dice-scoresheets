@@ -182,7 +182,7 @@ class SimpleTable extends React.Component {
       menuItems.push(<MenuItem key={i} value={i}>{i}</MenuItem>)
     }
     if (zero !== undefined) {
-      menuItems.unshift(<MenuItem key={max+1} value={0}>0</MenuItem>);
+      menuItems.unshift(<MenuItem key={max + 1} value={0}>0</MenuItem>);
     }
     return menuItems;
   }
@@ -190,208 +190,197 @@ class SimpleTable extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div>
-        <div id='yahtzee-table'>
-          <div id='yt-header'>
-
-          </div>
-          <div id='yt-left'>
-
-          </div>
-          <div id='yt-main'>
-
-          </div>
-        </div>
-        <Paper className={classes.root}>
-          <Table className={classes.table}>
-            <TableHead>
-              <TableRow>
-                <TableCell className={classes.th}></TableCell>
-                {this.state.players.map((player, index) => {
-                  return (<TableCell className={classes.td} key={index}>
-                    <TextField
-                      onChange={this.updatePlayerName}
-                      name={index.toString()}
-                      className={classes.noPadding}
-                      inputProps={{
-                        className: classes.smInput,
-                      }}
-                      placeholder={player.name}
-                      variant='filled'
-                      margin='dense' />
-                  </TableCell>)
-                })}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows.map(row => {
-                return (
-                  <TableRow key={row.id} className={classes.trs}>
-                    <TableCell className={classes.th} component="th" scope="row">
-                      {row.row}
-                    </TableCell>
-                    {this.state.players.map((player, index) => {
-                      // add drop downs for the 1-6 rolls
-                      if (row.id < 7) {
-                        return (
-                          <TableCell className={classes.td} key={index}>
-                            <Select
-                              name={`${index.toString()}-${row.row}`}
-                              onChange={this.updatePlayerScore}
-                              classes={{
-                                root: classes.selectRoot,
-                                select: classes.select,
-                              }}
-                              value={player.scores[row.row]}>
-                              <MenuItem value=''></MenuItem>
-                              <MenuItem value={0}>0</MenuItem>
-                              <MenuItem value={row.id}>{row.id}</MenuItem>
-                              <MenuItem value={row.id * 2}>{row.id * 2}</MenuItem>
-                              <MenuItem value={row.id * 3}>{row.id * 3}</MenuItem>
-                              <MenuItem value={row.id * 4}>{row.id * 4}</MenuItem>
-                              <MenuItem value={row.id * 5}>{row.id * 5}</MenuItem>
-                            </Select>
-                          </TableCell>
-                        )
-                        // Add divs for the sub totals
-                      } else if (row.id < 9) {
-                        return (
-                          <TableCell className={classes.td} key={index}>
-                            <div className='sub-totals'>
-                              {player.scores[row.row]}
-                            </div>
-                          </TableCell>
-                        )
-                        // Add divs for the totals
-                      } else if (row.id === 9 || row.id === 18) {
-                        return (
-                          <TableCell className={classes.td} key={index}>
-                            <div className='table-totals'>
-                              {player.scores[row.row]}
-                            </div>
-                          </TableCell>
-                        )
-                        // Add Inputs for the 3OFK 4OFK Chance
-                      } else if (row.id === 10 || row.id === 11 || row.id === 15) {
-                        return (
-                          <TableCell className={classes.td} key={index}>
-                            <Select
-                              name={`${index.toString()}-${row.row}`}
-                              onChange={this.updatePlayerScore}
-                              classes={{
-                                root: classes.selectRoot,
-                                select: classes.select,
-                              }}
-                              value={player.scores[row.row]}>
-                              <MenuItem value=''></MenuItem>
-                              {this.returnMenuItems(5, 30, 0)}
-                              }}
-                            </Select>
-                          </TableCell>
-                        )
-                        // Add inputs for the full house
-                      } else if (row.id === 12) {
-                        return (
-                          <TableCell className={classes.td} key={index}>
-                            <Select
-                              name={`${index.toString()}-${row.row}`}
-                              onChange={this.updatePlayerScore}
-                              classes={{
-                                root: classes.selectRoot,
-                                select: classes.select,
-                              }}
-                              value={player.scores[row.row]}>
-                              <MenuItem value=''></MenuItem>
-                              <MenuItem value={0}>0</MenuItem>
-                              <MenuItem value={25}>25</MenuItem>
-                            </Select>
-                          </TableCell>
-                        )
-                        // Add inputs for the small straight
-                      } else if (row.id === 13) {
-                        return (
-                          <TableCell className={classes.td} key={index}>
-                            <Select
-                              name={`${index.toString()}-${row.row}`}
-                              onChange={this.updatePlayerScore}
-                              classes={{
-                                root: classes.selectRoot,
-                                select: classes.select,
-                              }}
-                              value={player.scores[row.row]}>
-                              <MenuItem value=''></MenuItem>
-                              <MenuItem value={0}>0</MenuItem>
-                              <MenuItem value={30}>30</MenuItem>
-                            </Select>
-                          </TableCell>
-                        )
-                        // Add inputs for the large straight
-                      } else if (row.id === 14) {
-                        return (
-                          <TableCell className={classes.td} key={index}>
-                            <Select
-                              name={`${index.toString()}-${row.row}`}
-                              onChange={this.updatePlayerScore}
-                              classes={{
-                                root: classes.selectRoot,
-                                select: classes.select,
-                              }}
-                              value={player.scores[row.row]}>
-                              <MenuItem value=''></MenuItem>
-                              <MenuItem value={0}>0</MenuItem>
-                              <MenuItem value={40}>40</MenuItem>
-                            </Select>
-                          </TableCell>
-                        )
-                        // Add inputs for Yahtzee
-                      } else if (row.id === 16) {
-                        return (
-                          <TableCell className={classes.td} key={index}>
-                            <Select
-                              name={`${index.toString()}-${row.row}`}
-                              onChange={this.updatePlayerScore}
-                              classes={{
-                                root: classes.selectRoot,
-                                select: classes.select,
-                              }}
-                              value={player.scores[row.row]}>
-                              <MenuItem value=''></MenuItem>
-                              <MenuItem value={0}>0</MenuItem>
-                              <MenuItem value={50}>50</MenuItem>
-                            </Select>
-                          </TableCell>
-                        )
-                        // Add inputs for the Yahtzee Bonus
-                      } else if (row.id === 17) {
-                        return (
-                          <TableCell className={classes.td} key={index}>
-                            <Select
-                              name={`${index.toString()}-${row.row}`}
-                              onChange={this.updatePlayerScore}
-                              classes={{
-                                root: classes.selectRoot,
-                                select: classes.select,
-                              }}
-                              value={player.scores[row.row]}>
-                              <MenuItem value=''></MenuItem>
-                              <MenuItem value={0}>0</MenuItem>
-                              <MenuItem value={100}>100</MenuItem>
-                              <MenuItem value={200}>200</MenuItem>
-                              <MenuItem value={300}>300</MenuItem>
-                              <MenuItem value={400}>400</MenuItem>
-                              <MenuItem value={500}>500</MenuItem>
-                            </Select>
-                          </TableCell>
-                        )
-                      }
-                    })}
-                  </TableRow>
-                );
+      <Paper className={classes.root}>
+        <Table className={classes.table}>
+          <TableHead>
+            <TableRow>
+              <TableCell className={classes.th}></TableCell>
+              {this.state.players.map((player, index) => {
+                return (<TableCell className={classes.td} key={index}>
+                  <TextField
+                    onChange={this.updatePlayerName}
+                    name={index.toString()}
+                    className={classes.noPadding}
+                    inputProps={{
+                      className: classes.smInput,
+                    }}
+                    placeholder={player.name}
+                    variant='filled'
+                    margin='dense' />
+                </TableCell>)
               })}
-            </TableBody>
-          </Table>
-        </Paper>
-      </div>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map(row => {
+              return (
+                <TableRow key={row.id} className={classes.trs}>
+                  <TableCell className={classes.th} component="th" scope="row">
+                    {row.row}
+                  </TableCell>
+                  {this.state.players.map((player, index) => {
+                    // add drop downs for the 1-6 rolls
+                    if (row.id < 7) {
+                      return (
+                        <TableCell className={classes.td} key={index}>
+                          <Select
+                            name={`${index.toString()}-${row.row}`}
+                            onChange={this.updatePlayerScore}
+                            classes={{
+                              root: classes.selectRoot,
+                              select: classes.select,
+                            }}
+                            value={player.scores[row.row]}>
+                            <MenuItem value=''></MenuItem>
+                            <MenuItem value={0}>0</MenuItem>
+                            <MenuItem value={row.id}>{row.id}</MenuItem>
+                            <MenuItem value={row.id * 2}>{row.id * 2}</MenuItem>
+                            <MenuItem value={row.id * 3}>{row.id * 3}</MenuItem>
+                            <MenuItem value={row.id * 4}>{row.id * 4}</MenuItem>
+                            <MenuItem value={row.id * 5}>{row.id * 5}</MenuItem>
+                          </Select>
+                        </TableCell>
+                      )
+                      // Add divs for the sub totals
+                    } else if (row.id < 9) {
+                      return (
+                        <TableCell className={classes.td} key={index}>
+                          <div className='sub-totals'>
+                            {player.scores[row.row]}
+                          </div>
+                        </TableCell>
+                      )
+                      // Add divs for the totals
+                    } else if (row.id === 9 || row.id === 18) {
+                      return (
+                        <TableCell className={classes.td} key={index}>
+                          <div className='table-totals'>
+                            {player.scores[row.row]}
+                          </div>
+                        </TableCell>
+                      )
+                      // Add Inputs for the 3OFK 4OFK Chance
+                    } else if (row.id === 10 || row.id === 11 || row.id === 15) {
+                      return (
+                        <TableCell className={classes.td} key={index}>
+                          <Select
+                            name={`${index.toString()}-${row.row}`}
+                            onChange={this.updatePlayerScore}
+                            classes={{
+                              root: classes.selectRoot,
+                              select: classes.select,
+                            }}
+                            value={player.scores[row.row]}>
+                            <MenuItem value=''></MenuItem>
+                            {this.returnMenuItems(5, 30, 0)}
+                              }}
+                            </Select>
+                        </TableCell>
+                      )
+                      // Add inputs for the full house
+                    } else if (row.id === 12) {
+                      return (
+                        <TableCell className={classes.td} key={index}>
+                          <Select
+                            name={`${index.toString()}-${row.row}`}
+                            onChange={this.updatePlayerScore}
+                            classes={{
+                              root: classes.selectRoot,
+                              select: classes.select,
+                            }}
+                            value={player.scores[row.row]}>
+                            <MenuItem value=''></MenuItem>
+                            <MenuItem value={0}>0</MenuItem>
+                            <MenuItem value={25}>25</MenuItem>
+                          </Select>
+                        </TableCell>
+                      )
+                      // Add inputs for the small straight
+                    } else if (row.id === 13) {
+                      return (
+                        <TableCell className={classes.td} key={index}>
+                          <Select
+                            name={`${index.toString()}-${row.row}`}
+                            onChange={this.updatePlayerScore}
+                            classes={{
+                              root: classes.selectRoot,
+                              select: classes.select,
+                            }}
+                            value={player.scores[row.row]}>
+                            <MenuItem value=''></MenuItem>
+                            <MenuItem value={0}>0</MenuItem>
+                            <MenuItem value={30}>30</MenuItem>
+                          </Select>
+                        </TableCell>
+                      )
+                      // Add inputs for the large straight
+                    } else if (row.id === 14) {
+                      return (
+                        <TableCell className={classes.td} key={index}>
+                          <Select
+                            name={`${index.toString()}-${row.row}`}
+                            onChange={this.updatePlayerScore}
+                            classes={{
+                              root: classes.selectRoot,
+                              select: classes.select,
+                            }}
+                            value={player.scores[row.row]}>
+                            <MenuItem value=''></MenuItem>
+                            <MenuItem value={0}>0</MenuItem>
+                            <MenuItem value={40}>40</MenuItem>
+                          </Select>
+                        </TableCell>
+                      )
+                      // Add inputs for Yahtzee
+                    } else if (row.id === 16) {
+                      return (
+                        <TableCell className={classes.td} key={index}>
+                          <Select
+                            name={`${index.toString()}-${row.row}`}
+                            onChange={this.updatePlayerScore}
+                            classes={{
+                              root: classes.selectRoot,
+                              select: classes.select,
+                            }}
+                            value={player.scores[row.row]}>
+                            <MenuItem value=''></MenuItem>
+                            <MenuItem value={0}>0</MenuItem>
+                            <MenuItem value={50}>50</MenuItem>
+                          </Select>
+                        </TableCell>
+                      )
+                      // Add inputs for the Yahtzee Bonus
+                    } else if (row.id === 17) {
+                      return (
+                        <TableCell className={classes.td} key={index}>
+                          <Select
+                            name={`${index.toString()}-${row.row}`}
+                            onChange={this.updatePlayerScore}
+                            classes={{
+                              root: classes.selectRoot,
+                              select: classes.select,
+                            }}
+                            value={player.scores[row.row]}>
+                            <MenuItem value=''></MenuItem>
+                            <MenuItem value={0}>0</MenuItem>
+                            <MenuItem value={100}>100</MenuItem>
+                            <MenuItem value={200}>200</MenuItem>
+                            <MenuItem value={300}>300</MenuItem>
+                            <MenuItem value={400}>400</MenuItem>
+                            <MenuItem value={500}>500</MenuItem>
+                          </Select>
+                        </TableCell>
+                      )
+                    } else {
+                      return null;
+                    }
+                  })}
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </Paper>
     );
   }
 
